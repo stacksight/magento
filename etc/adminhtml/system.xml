@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Location: magento2_root/app/code/Linnovate/Stacksight/etc/adminhtml/system.xml
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="general_tab" translate="label" sortOrder="1000">
+            <label>Stacksight</label>
+        </tab>
+        <section id="general_section" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>General config</label>
+            <tab>general_tab</tab>
+            <resource>Linnovate_Stacksight::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="stacksight_token" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Stacksight Token</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="stacksight_group_name" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Group Name</label>
+                </field>
+                <field id="stacksight_app_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Application ID</label>
+                </field>
+            </group>
+        </section>
+        <section id="features_section" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Features</label>
+            <tab>general_tab</tab>
+            <resource>Linnovate_Stacksight::config</resource>
+            <group id="features" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Features</label>
+                <field id="stacksight_features_logs" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Logs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="stacksight_features_events" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Events</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
