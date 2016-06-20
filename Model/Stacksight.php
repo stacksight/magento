@@ -7,7 +7,7 @@ use Magento\Customer\Model\Session as CustomerModelSession;
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\App\Helper\AbstractHelper as AbstractHelper;
 
-class Stacksight extends AbstractHelper implements StacksightInterface
+class Stacksight implements StacksightInterface
 {
 
     private $_ss_client;
@@ -58,6 +58,8 @@ class Stacksight extends AbstractHelper implements StacksightInterface
             require_once(__DIR__.'/../src/sdk/bootstrap-magento-2.php');
             $stacksight = new \Magento2Bootstrap();
             $this->_ss_client = $stacksight->getClient();
+        } else{
+            $this->_ss_client = $ss_client;
         }
     }
 

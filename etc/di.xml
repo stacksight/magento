@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
-
-<!--<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">-->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Linnovate\Stacksight\Model\StacksightInterface" type="Linnovate\Stacksight\Model\Stacksight" />
-
     <type name="Linnovate\Stacksight\Model\Stacksight">
         <arguments>
             <argument name="token" xsi:type="string">ss-e1697cc2d58d676ee51d782fbb4ad1efaab6e3dcea70b7c517c46374670e37e6</argument>
@@ -13,6 +10,7 @@
             <argument name="include_events" xsi:type="boolean">true</argument>
         </arguments>
     </type>
+    <preference for="Psr\Log\LoggerInterface" type="Linnovate\Stacksight\Model\Framework\Logs\Logger" />
 
     <type name="Linnovate\Stacksight\Model\Framework\Logs\Handler\Base">
         <arguments>
@@ -20,8 +18,6 @@
             <argument name="stacksight" xsi:type="object">Linnovate\Stacksight\Model\Stacksight</argument>
         </arguments>
     </type>
-
-    <preference for="Psr\Log\LoggerInterface" type="Linnovate\Stacksight\Model\Framework\Logs\Logger" />
     <type name="Linnovate\Stacksight\Model\Framework\Logs\Logger">
         <arguments>
             <argument name="name" xsi:type="string">main</argument>
@@ -32,62 +28,4 @@
             </argument>
         </arguments>
     </type>
-
-
-
-    <!--<type name="Linnovate\Stacksight\Model\Framework\Logs\Handler\Debug">-->
-        <!--<arguments>-->
-            <!--<argument name="stacksight" xsi:type="object">Linnovate\Stacksight\Model\Stacksight</argument>-->
-        <!--</arguments>-->
-    <!--</type>-->
-
-
-    <!--<type name="Linnovate\Stacksight\Model\Framework\Logs\Logger">-->
-        <!--<arguments>-->
-            <!--<argument name="name" xsi:type="string">main</argument>-->
-            <!--<argument name="handlers"  xsi:type="array">-->
-                <!--&lt;!&ndash;<item name="exception" xsi:type="object">Linnovate\Stacksight\Model\Framework\Logs\Handler\Exception</item>&ndash;&gt;-->
-                <!--&lt;!&ndash;<item name="system" xsi:type="object">Magento\Framework\Logger\Handler\System</item>&ndash;&gt;-->
-                <!--<item name="debug" xsi:type="object">Linnovate\Stacksight\Model\Framework\Logs\Handler\Debug</item>-->
-            <!--</argument>-->
-        <!--</arguments>-->
-    <!--</type>-->
-
-    <!---->
-
-
-
-    <!--<type name="Linnovate\Stacksight\Model\Framework\Logs\Handler\Base">-->
-        <!--<arguments>-->
-            <!--<argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>-->
-            <!--<argument name="stacksight" xsi:type="object">Linnovate\Stacksight\Model\Stacksight</argument>-->
-        <!--</arguments>-->
-    <!--</type>-->
-
-
-
-
-    <!--<virtualType name="LogException" type="Linnovate\Stacksight\Model\Framework\Logs\Handler\Exception"></virtualType>-->
-    <!--<virtualType name="LogSystem" type="Linnovate\Stacksight\Model\Framework\Logs\Handler\System"></virtualType>-->
-
-
-    <!--<type name="Linnovate\Stacksight\Model\Framework\Logs\LoggerXXX">-->
-        <!--<arguments>-->
-            <!--&lt;!&ndash;<argument name="stacksightObj" xsi:type="object">Linnovate\Stacksight\Model\Stacksight</argument>&ndash;&gt;-->
-            <!--&lt;!&ndash;<argument name="loggerName" xsi:type="string">main</argument>&ndash;&gt;-->
-            <!--<argument name="name" xsi:type="string">main</argument>-->
-            <!--<argument name="handlers"  xsi:type="array">-->
-                <!--<item name="exception" xsi:type="object">Linnovate\Stacksight\Model\Framework\Logs\Handler\Exception</item>-->
-                <!--<item name="system" xsi:type="object">Linnovate\Stacksight\Model\Framework\Logs\Handler\System</item>-->
-                <!--<item name="debug" xsi:type="object">Linnovate\Stacksight\Model\Framework\Logs\Handler\Debug</item>-->
-            <!--</argument>-->
-        <!--</arguments>-->
-    <!--</type>-->
-
-    <!--<type name="Linnovate\Stacksight\Model\Framework\Logs\Handler\Base">-->
-    <!--<arguments>-->
-    <!--<argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>-->
-    <!--<argument name="stacksight" xsi:type="object">Linnovate\Stacksight\Model\Stacksight</argument>-->
-    <!--</arguments>-->
-    <!--</type>-->
 </config>

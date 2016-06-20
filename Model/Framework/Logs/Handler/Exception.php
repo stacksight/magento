@@ -23,10 +23,8 @@ class Exception extends Base
     public function write(array $record)
     {
         if(self::codeToString(strtolower($this->loggerType))){
-//            $this->stacksight->sendLog(self::generateDataStream($record), strtolower($this->loggerType));
+            $this->stacksight->sendLog(self::generateDataStream($record), strtolower(self::codeToString($this->loggerType)));
         }
-//        print_r($record);
-//        die();
         parent::write($record);
     }
 }
