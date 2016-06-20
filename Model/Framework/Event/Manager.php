@@ -47,6 +47,6 @@ class Manager extends \Magento\Framework\Event\Manager
     }
     public function dispatch($eventName, array $data = [])
     {
-
+        die('XXX');
     }
 }

@@ -23,7 +23,7 @@ class Observer implements ObserverInterface
      * @return $this
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
-    {    
+    {
         return $this;
     }
 }
