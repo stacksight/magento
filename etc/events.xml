@@ -13,9 +13,15 @@
         <observer name="stacksight_customer_logout" instance="Linnovate\Stacksight\Model\Framework\Event\auth\CustomerLogOutSuccessEvent"/>
     </event>
     <event name='cms_page_save_after'>
-        <observer name="stacksight_model_save_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageCreateEvent"/>
+        <observer name="stacksight_cms_page_save_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageCreateEvent"/>
     </event>
     <event name='cms_page_delete_after'>
-        <observer name="stacksight_model_save_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageDeleteEvent"/>
+        <observer name="stacksight_cms_page_delete_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageDeleteEvent"/>
+    </event>
+    <event name='checkout_cart_product_add_after'>
+        <observer name="stacksight_checkout_cart_product_add_after" instance="Linnovate\Stacksight\Model\Framework\Event\cart\AddProductEvent"/>
+    </event>
+    <event name='sales_quote_remove_item'>
+        <observer name="stacksight_sales_quote_remove_item" instance="Linnovate\Stacksight\Model\Framework\Event\cart\UpdateItemsEvent"/>
     </event>
 </config>
