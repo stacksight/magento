@@ -21,7 +21,6 @@ class Handler extends \Magento\Framework\Logger\Handler\Base
         DriverInterface $filesystem,
         $filePath = null
     ) {
-//        die('XXX');
         parent::__construct($filesystem, $filePath);
     }
 }
