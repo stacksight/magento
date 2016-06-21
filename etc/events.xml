@@ -15,4 +15,7 @@
     <event name='cms_page_save_after'>
         <observer name="stacksight_model_save_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageCreateEvent"/>
     </event>
+    <event name='cms_page_delete_after'>
+        <observer name="stacksight_model_save_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageDeleteEvent"/>
+    </event>
 </config>

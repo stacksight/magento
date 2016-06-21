@@ -2,7 +2,7 @@
 
 namespace Linnovate\Stacksight\Model\Framework\Event\interfaces;
 
-interface StacksightSendUserEventInterface
+interface StacksightUserEventInterface
 {
     public function getUserEventInfo();
     public function getUser();
