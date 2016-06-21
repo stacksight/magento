@@ -1,6 +1,6 @@
 <?php
 
-namespace Linnovate\Stacksight\Model\Framework\Event;
+namespace Linnovate\Stacksight\Model\Framework\Event\auth;
 
 class CustomerLogOutSuccessEvent extends CustomerLogInSuccessEvent
 {

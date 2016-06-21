@@ -1,13 +1,13 @@
 <?php
 
-namespace Linnovate\Stacksight\Model\Framework\Event;
+namespace Linnovate\Stacksight\Model\Framework\Event\auth;
 
-use Linnovate\Stacksight\Model\Framework\Event\interfaces\StacksightSendUserEventInterface;
+use Linnovate\Stacksight\Model\Framework\Event\interfaces\StacksightUserEventInterface;
 use \Magento\Framework\Event\Observer;
 use \Magento\Framework\Event\ObserverInterface;
 use Magento\Backend\Model\UrlInterface;
 
-abstract class StacksightUserEvent implements ObserverInterface, StacksightSendUserEventInterface
+abstract class StacksightUserEvent implements ObserverInterface, StacksightUserEventInterface
 {
     const ACTION_TYPE = 'user';
 

@@ -4,12 +4,15 @@
         <!--<observer name="stacksight_controller_action_predispatch" instance="Linnovate\Stacksight\Model\Observer"/>-->
     <!--</event>-->
     <event name='backend_auth_user_login_success'>
-        <observer name="stacksight_backend_auth_user_login_success" instance="Linnovate\Stacksight\Model\Framework\Event\BackendAuthUserLogInSuccessEvent"/>
+        <observer name="stacksight_backend_auth_user_login_success" instance="Linnovate\Stacksight\Model\Framework\Event\auth\BackendAuthUserLogInSuccessEvent"/>
     </event>
     <event name='customer_login'>
-        <observer name="stacksight_customer_login" instance="Linnovate\Stacksight\Model\Framework\Event\CustomerLogInSuccessEvent"/>
+        <observer name="stacksight_customer_login" instance="Linnovate\Stacksight\Model\Framework\Event\auth\CustomerLogInSuccessEvent"/>
     </event>
     <event name='customer_logout'>
-        <observer name="stacksight_customer_logout" instance="Linnovate\Stacksight\Model\Framework\Event\CustomerLogOutSuccessEvent"/>
+        <observer name="stacksight_customer_logout" instance="Linnovate\Stacksight\Model\Framework\Event\auth\CustomerLogOutSuccessEvent"/>
+    </event>
+    <event name='cms_page_save_after'>
+        <observer name="stacksight_model_save_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageCreateEvent"/>
     </event>
 </config>

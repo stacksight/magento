@@ -1,6 +1,6 @@
 <?php
 
-namespace Linnovate\Stacksight\Model\Framework\Event;
+namespace Linnovate\Stacksight\Model\Framework\Event\auth;
 
 use Linnovate\Stacksight\Model\Stacksight;
 use Magento\Backend\Model\UrlInterface;
