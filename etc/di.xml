@@ -28,4 +28,11 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="stacksight_command" xsi:type="object">Linnovate\Stacksight\Console\Command\UpdatesCommand</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

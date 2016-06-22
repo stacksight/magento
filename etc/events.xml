@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <!--<event name='controller_action_predispatch'>-->
-        <!--<observer name="stacksight_controller_action_predispatch" instance="Linnovate\Stacksight\Model\Observer"/>-->
-    <!--</event>-->
+    <event name='controller_action_predispatch'>
+        <observer name="stacksight_controller_action_predispatch" instance="Linnovate\Stacksight\Model\Framework\Cron\Updates" />
+    </event>
+
     <event name='backend_auth_user_login_success'>
         <observer name="stacksight_backend_auth_user_login_success" instance="Linnovate\Stacksight\Model\Framework\Event\auth\BackendAuthUserLogInSuccessEvent"/>
     </event>
