@@ -1,8 +1,5 @@
 <?php
-/**
- * Copyright © 2016 Magento. All rights reserved.
- * See COPYING.txt for license details.
- */
+
 namespace  Linnovate\Stacksight\Console\Command;
 
 use Linnovate\Stacksight\Model\Stacksight;
@@ -21,8 +18,7 @@ use Magento\Setup\Model\UpdatePackagesCache;
 use Magento\Setup\Model\MarketplaceManager;
 
 use Magento\Framework\Module\PackageInfo;
-
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Magento\Composer\InfoCommand;
 
 class UpdatesCommand extends Command
 {
@@ -38,9 +34,8 @@ class UpdatesCommand extends Command
 
     protected $packageInfo;
 
-//    protected $objectManagerProvider;
-//    protected $updatePackagesCache;
-//    protected $marketplaceManager;
+    protected $infoCommand;
+
 
     public function __construct(
         ModuleListInterface $module_list,
@@ -48,30 +43,22 @@ class UpdatesCommand extends Command
         Stacksight $stacksight,
         ComposerInformation $composerInformation,
         MagentoComposerApplicationFactory $magentoComposerApplicationFactory,
-
-        PackageInfo $packageInfo
-
-//        \Magento\Setup\Model\ObjectManagerProvider $objectManagerProvider
-//        \Magento\Setup\Model\UpdatePackagesCache $updatePackagesCache
-//        \Magento\Setup\Model\MarketplaceManager $marketplaceManager
-
-//        ObjectManagerProvider $objectManagerProvider
-//        UpdatePackagesCache $updatePackagesCache
-//        MarketplaceManager $marketplaceManager
+        PackageInfo $packageInfo,
+        Stacksight $stacksight
     )
     {
         $this->moduleList = $module_list;
         $this->moduleResource = $module_resource;
-        $this->stacksight = $stacksight;
+        $this->stacksight = $stacksight->getClient();
 
         $this->composerInformation = $composerInformation;
         $this->magentoComposerApplicationFactory = $magentoComposerApplicationFactory;
 
         $this->packageInfo = $packageInfo;
 
-//        $this->objectManagerProvider = $objectManagerProvider;
-//        $this->updatePackagesCache = $updatePackagesCache;
-//        $this->marketplaceManager = $marketplaceManager;
+        $this->infoCommand = $magentoComposerApplicationFactory->createInfoCommand();
+
+        $this->infoCommand = $magentoComposerApplicationFactory->createInfoCommand();
 
         parent::__construct();
     }
@@ -88,30 +75,32 @@ class UpdatesCommand extends Command
         $components = $this->composerInformation->getInstalledMagentoPackages();
         $allModules = $this->getAllModules();
         $components = array_replace_recursive($components, $allModules);
+        $updates = array();
         foreach ($components as $component) {
-            print_r($component);
+            $packageInfo = $this->infoCommand->run($component['name']);
+            if(empty($packageInfo))
+                continue;
+            $type = explode('-', $packageInfo['type']);
+            $status = 5;
+            if($type == 'framework'){
+                $status = 1;
+            }
+            $updates[] = array(
+                'title' => $packageInfo['name'],
+                'current_version' => $packageInfo[InfoCommand::CURRENT_VERSION],
+                'latest_version' => (isset($packageInfo[InfoCommand::NEW_VERSIONS]) && !empty($packageInfo[InfoCommand::NEW_VERSIONS])) ? $packageInfo[InfoCommand::NEW_VERSIONS][0] : $packageInfo[InfoCommand::CURRENT_VERSION],
+                'type' => $type[1],
+                'status' => $status, // 1 means security update (recommended)
+                'link' => '',
+                'release_link' => '',
+                'download_link' => '',
+                'update_link' => '',
+            );
         }
-//        $all_modules = $this->getAllModules();
-//        print_r($all_modules);
+        $this->stacksight->sendUpdates($updates, true);
 
-//        $main_components_grid = new ComponentGrid(
-//        var_dump($this->composerInformation);
-//            var_dump($this->objectManagerProvider);
-//            $this->updatePackagesCache,
-//            $this->marketplaceManager
-//        );
-
-//        $other_components_grid = new OtherComponentsGrid($this->composerInformation, $this->magentoComposerApplicationFactory);
-
-//        print_r($main_components_grid->componentsAction());
-
-//        print_r($components_grid->componentsAction());
         $output->writeln('<info>List of active modules: Magento_BundleImportExport<info>');
-//        var_dump($this->module_resource->getDataVersion('Magento_Tax'));
-//        print_r($this->component_grid);
-//        foreach ($this->moduleList->getNames() as $moduleName) {
-//            $output->writeln('<info>' . $moduleName . '<info>');
-//        }
+
     }
 
     private function getAllModules()
