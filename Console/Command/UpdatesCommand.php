@@ -19,6 +19,7 @@ use Magento\Setup\Model\MarketplaceManager;
 
 use Magento\Framework\Module\PackageInfo;
 use Magento\Composer\InfoCommand;
+use Magento\Backend\Model\UrlInterface;
 
 class UpdatesCommand extends Command
 {
@@ -36,6 +37,7 @@ class UpdatesCommand extends Command
 
     protected $infoCommand;
 
+    protected $url;
 
     public function __construct(
         ModuleListInterface $module_list,
@@ -44,7 +46,8 @@ class UpdatesCommand extends Command
         ComposerInformation $composerInformation,
         MagentoComposerApplicationFactory $magentoComposerApplicationFactory,
         PackageInfo $packageInfo,
-        Stacksight $stacksight
+        Stacksight $stacksight,
+        UrlInterface $url
     )
     {
         $this->moduleList = $module_list;
@@ -59,6 +62,8 @@ class UpdatesCommand extends Command
         $this->infoCommand = $magentoComposerApplicationFactory->createInfoCommand();
 
         $this->infoCommand = $magentoComposerApplicationFactory->createInfoCommand();
+
+        $this->url = $url;
 
         parent::__construct();
     }
@@ -75,6 +80,7 @@ class UpdatesCommand extends Command
         $components = $this->composerInformation->getInstalledMagentoPackages();
         $allModules = $this->getAllModules();
         $components = array_replace_recursive($components, $allModules);
+        
         $updates = array();
         foreach ($components as $component) {
             $packageInfo = $this->infoCommand->run($component['name']);
