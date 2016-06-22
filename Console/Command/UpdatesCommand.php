@@ -80,7 +80,7 @@ class UpdatesCommand extends Command
         $components = $this->composerInformation->getInstalledMagentoPackages();
         $allModules = $this->getAllModules();
         $components = array_replace_recursive($components, $allModules);
-        
+
         $updates = array();
         foreach ($components as $component) {
             $packageInfo = $this->infoCommand->run($component['name']);
