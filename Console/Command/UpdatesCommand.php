@@ -103,9 +103,9 @@ class UpdatesCommand extends Command
                 'update_link' => '',
             );
         }
-        $this->stacksight->sendUpdates($updates, true);
+        $this->stacksight->sendUpdates($updates);
 
-        $output->writeln('<info>List of active modules: Magento_BundleImportExport<info>');
+        $output->writeln('<info>Updates sents to the Stacksight...<info>');
 
     }
 
