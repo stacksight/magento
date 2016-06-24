@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name='controller_action_predispatch'>
+        <observer name="stacksight_controller_action_predispatch" instance="Linnovate\Stacksight\Model\Framework\Cron\Updates" />
+    </event>
+
+    <event name='backend_auth_user_login_success'>
+        <observer name="stacksight_backend_auth_user_login_success" instance="Linnovate\Stacksight\Model\Framework\Event\auth\BackendAuthUserLogInSuccessEvent"/>
+    </event>
+    <event name='customer_login'>
+        <observer name="stacksight_customer_login" instance="Linnovate\Stacksight\Model\Framework\Event\auth\CustomerLogInSuccessEvent"/>
+    </event>
+    <event name='customer_logout'>
+        <observer name="stacksight_customer_logout" instance="Linnovate\Stacksight\Model\Framework\Event\auth\CustomerLogOutSuccessEvent"/>
+    </event>
+    <event name='cms_page_save_after'>
+        <observer name="stacksight_cms_page_save_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageCreateEvent"/>
+    </event>
+    <event name='cms_page_delete_after'>
+        <observer name="stacksight_cms_page_delete_after" instance="Linnovate\Stacksight\Model\Framework\Event\page\PageDeleteEvent"/>
+    </event>
+    <event name='checkout_cart_product_add_after'>
+        <observer name="stacksight_checkout_cart_product_add_after" instance="Linnovate\Stacksight\Model\Framework\Event\cart\AddProductEvent"/>
+    </event>
+    <event name='sales_quote_remove_item'>
+        <observer name="stacksight_sales_quote_remove_item" instance="Linnovate\Stacksight\Model\Framework\Event\cart\UpdateItemsEvent"/>
+    </event>
+</config>

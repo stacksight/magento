@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Linnovate\Stacksight\Model\StacksightInterface" type="Linnovate\Stacksight\Model\Stacksight" />
+    <type name="Linnovate\Stacksight\Model\Stacksight">
+        <arguments>
+            <argument name="token" xsi:type="string">ss-e1697cc2d58d676ee51d782fbb4ad1efaab6e3dcea70b7c517c46374670e37e6</argument>
+            <argument name="group" xsi:type="string"></argument>
+            <argument name="app_id" xsi:type="string"></argument>
+            <argument name="include_logs" xsi:type="boolean">true</argument>
+            <argument name="include_events" xsi:type="boolean">true</argument>
+        </arguments>
+    </type>
+    <preference for="Psr\Log\LoggerInterface" type="Linnovate\Stacksight\Model\Framework\Logs\Logger" />
+
+    <type name="Linnovate\Stacksight\Model\Framework\Logs\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="stacksight" xsi:type="object">Linnovate\Stacksight\Model\Stacksight</argument>
+        </arguments>
+    </type>
+    <type name="Linnovate\Stacksight\Model\Framework\Logs\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">main</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="exception" xsi:type="object">Linnovate\Stacksight\Model\Framework\Logs\Handler\Exception</item>
+                <item name="system" xsi:type="object">Linnovate\Stacksight\Model\Framework\Logs\Handler\System</item>
+                <item name="debug" xsi:type="object">Linnovate\Stacksight\Model\Framework\Logs\Handler\Debug</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="stacksight_command" xsi:type="object">Linnovate\Stacksight\Console\Command\UpdatesCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
