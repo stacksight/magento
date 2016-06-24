@@ -1,6 +1,6 @@
 <?php
-
-use Magento\Framework\Component\ComponentRegistrar as Registrar;
-use Linnovate\Stacksight\Config as Config;
-
-Registrar::register(Registrar::MODULE, Config::MODULE, __DIR__);
+\Magento\Framework\Component\ComponentRegistrar::register(
+    \Magento\Framework\Component\ComponentRegistrar::MODULE,
+    'Linnovate_Stacksight',
+    __DIR__
+);
