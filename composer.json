@@ -19,7 +19,8 @@
   ],
   "require": {
     "php": ">=5.2.7",
-    "magento/framework": "100.0.*"
+    "magento/framework": "100.0.*",
+    "stacksight/stacksight-php-sdk": "~0.3"
   },
   "require-dev": {
     "symfony/phpunit-bridge": "~2.7",
