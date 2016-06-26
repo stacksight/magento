@@ -32,6 +32,7 @@
     }
   },
   "autoload": {
+    "files": [ "registration.php" ],
     "psr-0": { "Linnovate\\Stacksight": "" }
   }
 }
