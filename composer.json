@@ -27,6 +27,12 @@
     "symfony/debug": "~2.7"
   },
   "extra": {
+    "map": [
+      [
+        "*",
+        "Linnovate/Stacksight"
+      ]
+    ],
     "branch-alias": {
       "dev-master": "1.01-dev"
     }
