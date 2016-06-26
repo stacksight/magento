@@ -55,7 +55,7 @@ class Stacksight implements StacksightInterface
         global $ss_client;
 
         if(!$ss_client){
-            require_once(__DIR__.'/../src/sdk/bootstrap-magento-2.php');
+            require_once(__DIR__.'/../../../../stacksight-php-sdk/bootstrap-magento-2.php');
             $stacksight = new \Magento2Bootstrap();
             $this->_ss_client = $stacksight->getClient();
         } else{
